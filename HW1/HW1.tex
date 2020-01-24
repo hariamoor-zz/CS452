@@ -23,7 +23,7 @@
 \end{enumerate}
 
 \section*{Problem 0.9: Formally describe the given graph.}
-The given graph is the complete bipartite graph $K_{3, 3}$.
+The given graph is the complete bipartite graph $K_{3, 3}$ with formal description $(\{1, 2, 3, 4, 5, 6\}, \{(1, 4), (2, 4), (3, 4), (1, 5), (2, 5), (3, 5), (1, 6), (2, 6), (3, 6)\}$.
 
 \section*{Problem 0.10: Find the error in the given proof.}
 The error in the given proof is that the writer defines $a = b = 1$. Thus, when he transforms the equality $(a + b)(a - b) = b(a + b)$ to $a + b = b$, he divides by $a - b = 0$. Thus, the proof is incorrect.
@@ -40,7 +40,13 @@ The graph $G$ with two vertices $x, y$ where $x$ has a self-loop and $y$ has no 
 
 \section*{Problem 0.14, Claim: Ramsey's Theorem.}
 \begin{proof}
-	Let $R(s, t)$ be the least integer $k$ s.t. every graph on $k$ or more vertices contains an $s$-clique or $t$-size independent set. It suffices to show that $R(t, t) \leq 2^{2t}$. In fact, $R(s, t)$ is well-defined as the Ramsey Numbers, which have the well-known upper-bound $k' = {r + s - 2 \choose r - 1}$. In particular, $R(t, t) \leq k' \leq k$, so the claim holds.
+	Let $G$ be a graph of size $n$. Now, assume a 2-coloring on the edges of the complete graph $K_{n}$ of size $n$ s.t. red edges are in $G$ and blue edges are not in $G$. \\
+	\newline
+	If there are $k \geq \frac{1}{2}\lg{n}$ red edges, then we are done. So, assume that this is not the case, i.e. $k \le \frac{1}{2}\lg{n}$. Therefore, there are $n^{2} - n - k$ blue edges in our coloring of $K_{n}$. \\
+	\newline
+	Finally, observe that $k + \frac{1}{2}\lg{n} \le \lg{n} \leq n(n - 1) = n^{2} - n$. Thus, $n^{2} - n - k \ge \frac{1}{2}\lg{n}$; so, it follows that there are more than $\frac{1}{2}\lg{n}$ blue edges. \\
+	\newline
+	We know that the blue edges of $K_{n}$ are not connected by an edge in $G$. Thus, the set of vertices connected with blue edges in $K_{n}$ forms an independent set in $G$, as required.
 \end{proof}
 
 \section*{Extra Problem, Claim: The relation $S$ defined by $(1, 1) \in S$ and $(a + 1, b + 2a + 1) \in S$ for all $(a, b) \in S$ is equivalent to the function $f: \mathbb{N} \rightarrow \mathbb{N}$ induced by $n \mapsto n^{2}$.}
