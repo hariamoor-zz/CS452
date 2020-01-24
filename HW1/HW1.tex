@@ -1,0 +1,57 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, commath, enumitem, quoting}
+\usepackage[margin=1cm]{geometry}
+
+\title{Math 351 - Homework Assignment \#1}
+\author{Hari Amoor, NetID: hra25}
+\date{September 16, 2019}
+
+\begin{document}
+\maketitle
+
+\section*{Problem 0.7: Supply a relation that satisfies each constraint.}
+\begin{enumerate}[label=(\alph*)]
+	\item \textbf{Reflexive and symmetric, but not transitive.} \\
+		\newline
+		The relation between two people $x, y$ given iff $x$ is blood-related to $y$ is reflexive and symmetric, but not transitive.
+	\item \textbf{Reflexive and transitive, but not symmetric.} \\
+		\newline
+		$R = \{(a, b) \in \mathbb{Z} \times \mathbb{Z} : a \geq b\}$ is reflexive and transitive, but not symmetric.
+	\item \textbf{Symmetric and transitive, but not reflexive.} \\
+		\newline
+		$R = \{(0, 0), (0, 1), (1, 0), (1, 1)\}$ in $X = \{0, 1, 2\}$. This is symmetric and transitive, but not reflexive since $(2, 2) \notin R$.
+\end{enumerate}
+
+\section*{Problem 0.9: Formally describe the given graph.}
+The given graph is the complete bipartite graph $K_{3, 3}$.
+
+\section*{Problem 0.10: Find the error in the given proof.}
+The error in the given proof is that the writer defines $a = b = 1$. Thus, when he transforms the equality $(a + b)(a - b) = b(a + b)$ to $a + b = b$, he divides by $a - b = 0$. Thus, the proof is incorrect.
+
+\section*{Problem 0.12: Find the error in the given proof.}
+Let $P(h)$ be the predicate that all horses in a set of $h$ horses are the same color. As per the base case, $P(1)$ is true. However, $P(2)$ is not implied by the base case $P(1)$. \\
+\newline
+Take two horses $x, y$ of different color. By the inductive hypothesis, all the horses in $\{x\}$ and those in $\{y\}$ are the same color. However, the horses in $\{x, y\}$ are not the same color by definition. Thus, the claim of the author that $P(k)$ implies $P(k + 1)$ is untrue.
+
+\section*{Problem 0.13, Claim: It is not true that every graph of two or more vertices contain two vertices of equal vertices when self-loops are allowed.}
+\begin{proof}
+The graph $G$ with two vertices $x, y$ where $x$ has a self-loop and $y$ has no edge is a counterexample.
+\end{proof}
+
+\section*{Problem 0.14, Claim: Ramsey's Theorem.}
+\begin{proof}
+	Let $R(s, t)$ be the least integer $k$ s.t. every graph on $k$ or more vertices contains an $s$-clique or $t$-size independent set. It suffices to show that $R(t, t) \leq 2^{2t}$. In fact, $R(s, t)$ is well-defined as the Ramsey Numbers, which have the well-known upper-bound $k' = {r + s - 2 \choose r - 1}$. In particular, $R(t, t) \leq k' \leq k$, so the claim holds.
+\end{proof}
+
+\section*{Extra Problem, Claim: The relation $S$ defined by $(1, 1) \in S$ and $(a + 1, b + 2a + 1) \in S$ for all $(a, b) \in S$ is equivalent to the function $f: \mathbb{N} \rightarrow \mathbb{N}$ induced by $n \mapsto n^{2}$.}
+\begin{proof}
+	Let $P(n)$ be the predicate that $(n, n^{2}) in S$ for a particular $n$. We prove the claim with mathematical induction. \\
+	\newline
+	\underline{Base Case:} It is given that $(1, 1) = (1, 1^{2}) \in S$. Thus, $P(1)$ holds. \\
+	\newline
+	\underline{Inductive Step:} Suppose that $P(k)$ holds for all $k$ s.t. $1 \leq k \leq m$, where $m \geq 1$. It follows from the inductive hypothesis that $m + 1 \mapsto m^{2} + 2m + 1 = (m + 1)^{2}$. Thus, $P(m + 1)$ holds. \\
+	\newline
+	Hence, by the Principle of Mathematical Induction, the claim holds.
+\end{proof}
+
+\end{document}
