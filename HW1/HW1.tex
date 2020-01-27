@@ -2,9 +2,9 @@
 \usepackage{amsmath, amssymb, amsthm, commath, enumitem, quoting}
 \usepackage[margin=1cm]{geometry}
 
-\title{Math 351 - Homework Assignment \#1}
+\title{Computer Science 452 - Homework Assignment \#1}
 \author{Hari Amoor, NetID: hra25}
-\date{September 16, 2019}
+\date{September 28, 2019}
 
 \begin{document}
 \maketitle
@@ -42,16 +42,16 @@ The graph $G$ with two vertices $x, y$ where $x$ has a self-loop and $y$ has no 
 \begin{proof}
 	Let $G$ be a graph of size $n$. Now, assume a 2-coloring on the edges of the complete graph $K_{n}$ of size $n$ s.t. red edges are in $G$ and blue edges are not in $G$. \\
 	\newline
-	If there are $k \geq \frac{1}{2}\lg{n}$ red edges, then we are done. So, assume that this is not the case, i.e. $k \le \frac{1}{2}\lg{n}$. Therefore, there are $n^{2} - n - k$ blue edges in our coloring of $K_{n}$. \\
+	If there are $k \geq \frac{1}{2}\lg{n}$ red edges, then we are done. So, assume that this is not the case, i.e. $k < \frac{1}{2}\lg{n}$. Therefore, there are $n^{2} - n - k$ blue edges in our coloring of $K_{n}$. \\
 	\newline
-	Finally, observe that $k + \frac{1}{2}\lg{n} \le \lg{n} \leq n(n - 1) = n^{2} - n$. Thus, $n^{2} - n - k \ge \frac{1}{2}\lg{n}$; so, it follows that there are more than $\frac{1}{2}\lg{n}$ blue edges. \\
+	Finally, observe that $k + \frac{1}{2}\lg{n} < \lg{n} \leq n(n - 1) = n^{2} - n$. Thus, $n^{2} - n - k \ge \frac{1}{2}\lg{n}$; so, it follows that there are more than $\frac{1}{2}\lg{n}$ blue edges. \\
 	\newline
 	We know that the blue edges of $K_{n}$ are not connected by an edge in $G$. Thus, the set of vertices connected with blue edges in $K_{n}$ forms an independent set in $G$, as required.
 \end{proof}
 
 \section*{Extra Problem, Claim: The relation $S$ defined by $(1, 1) \in S$ and $(a + 1, b + 2a + 1) \in S$ for all $(a, b) \in S$ is equivalent to the function $f: \mathbb{N} \rightarrow \mathbb{N}$ induced by $n \mapsto n^{2}$.}
 \begin{proof}
-	Let $P(n)$ be the predicate that $(n, n^{2}) in S$ for a particular $n$. We prove the claim with mathematical induction. \\
+	Let $P(n)$ be the predicate that $(n, n^{2}) \in S$ for a particular $n$. We prove the claim with mathematical induction. \\
 	\newline
 	\underline{Base Case:} It is given that $(1, 1) = (1, 1^{2}) \in S$. Thus, $P(1)$ holds. \\
 	\newline
