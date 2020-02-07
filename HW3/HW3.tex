@@ -9,6 +9,33 @@
 \begin{document}
 \maketitle
 
+\section*{Problem 1.2.1: Convert the following finite automata to regular expressions.}
+\begin{enumerate}[label=(\alph*)]
+	\item The given automaton computes the regular expression $ba^{*}$.
+	\item The given automaton computes the regular expression $((a \cup b)a^{*}b(bb)^{*}a)^{*}$.
+\end{enumerate}
 
+\section*{Problem 1.29b, Claim: The language $A = \{www \mid w \in \{a, b\}^{*}\}$ is not regular.}
+\begin{proof}
+	Suppose for contradiction that $A$ is regular. Let $p$ be the Pumping length of $A$, and $w = a^{p}b^{p}$. Then, $x = www \in A$. \\
+	\newline
+	The string $x$ is sufficiently large, so the decomposition $x = qrs$ must exist as per the Pumping lemma. Since $\abs{qr} \leq p$ and $r \neq \varepsilon$, $r$ must consist only of the symbol "a". Then, the string $qr^{2}s$ has more "a"s than "b"s, so it cannot be in $A$. \\
+	\newline
+	This result contradicts the Pumping lemma; thus, it is true that $A$ is not regular.
+\end{proof}
+
+\section*{Problem 1.32, Claim: The language $B$ as defined is regular.}
+\textbf{NOTE:} Arithmetic is done in $\mathbb{Z}_{2}$ when describing $\delta$.
+\begin{proof}
+	It suffices to show that $B^{R}$ is regular. We construct a DFA to recognize $B^{R}$. \\
+	\newline
+	We assume w.l.o.g. that $\varepsilon \in B^{R}$. The DFA $M_{B} = (Q, \sum_{3}, \delta, q_{0}, F)$, where:
+	\begin{align}
+		Q = \{q_{0}, q_{1}, q_{e}\}; \\
+		F = \{q_{0}\}; \\
+		\delta\left(q_{i}, \begin{bmatrix} a \\ b \\ c \end{bmatrix}\right) = \begin{cases} q_{a + b + i} & q_{i} \neq q_{e} \text{ and } a + b + i = c \\ q_{e} & \text{otherwise}\end{cases}
+	\end{align}
+	recognizes $B$. Thus, the claim holds.
+\end{proof}
 
 \end{document}
