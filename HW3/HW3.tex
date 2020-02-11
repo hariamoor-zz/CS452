@@ -38,4 +38,73 @@
 	recognizes $B$. Thus, the claim holds.
 \end{proof}
 
+\section*{Problem 1.35, Claim: The language $E$ as given is not regular.}
+\begin{proof}
+  Suppose for contradiction that $E$ is regular. Let $p$ be the Pumping length of $E$, and choose $s = \begin{bmatrix} 0 \\ 1 \end{bmatrix}^{p} \begin{bmatrix} 1 \\ 0 \end{bmatrix}^{p}$. \\
+  \newline
+  By definition, $s \in E$. Furthermore, since $\abs{s} > p$, it holds that $s = xyz$ as per the Pumping lemma. That is, $xy$ must have length at most $p$. Therefore, it holds that $y$ only contains symbols $\begin{bmatrix} 0 \\ 1\end{bmatrix}$. \\
+    \newline
+    So, the number of symbols of the form $\begin{bmatrix} 0 \\ 1 \end{bmatrix}$ and those of the form $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ must be unbalanced in $xy^{2}z$, so $xy^{2}z \notin E$. This contradicts the Pumping lemma. Thus, the claim holds.
+\end{proof}
+
+\section*{Problem 1.40: Prove the following claims.}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{$NOPREFIX$ closes the set of regular languages.}
+  \begin{proof}
+    Let $M = (Q, \Sigma, \delta, q_{0}, F)$ be a finite-state machine, i.e. a DFA, that computes a regular language $A$. Define $M' = (Q, \Sigma, \delta', q_{0}, F)$ be a finite-state machine with $\delta'(q, a) = \delta(r, a)$ if $r \notin F$ and $\delta'(q, a) = \emptyset$ otherwise (remove all edges from the accepting states). Then, $M'$ computes the language $NOPREFIX(A)$. \\
+    \newline
+    Hence, $NOPREFIX(A)$ is regular, as required.
+  \end{proof}
+
+\item \textbf{$NOEXTEND$ closes the set of regular languages.}
+  \begin{proof}
+    Suppose $A$ is a regular language and that the DFA $M = (Q, \Sigma, \delta, q_{0}, F)$ recognizes $A$. Let $M' = (Q, \Sigma, \delta, q_{0}, F \setminus F')$, where $F'$ is the set of accepting states that have a path of length at least 1 to another accepting state. \\
+    \newline
+    Here, $M'$ recognizes $NOEXTEND(A)$, so $NOEXTEND(A)$ is regular, as required.
+  \end{proof}
+\end{enumerate}
+
+\section*{Problem 1.4.6: Prove that the following languages are not regular.}
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{$L = \{0^{n}1^{m}0^{n} \mid m, n \geq 0\}$}
+    \begin{proof}
+      Suppose for contradiction that $L$ is regular. Let $p$ be the Pumping length of $L$, and $s = 0^{p}1^{p}0^{p} \in L$. Then, $s = xyz$ as per the Pumping lemma. \\
+      \newline
+      Now, since $\abs{xy} \leq p$, it holds that $y$ consists entirely of 0s. Then, $s' = xy^{2}z$ is of the form $0^{q}1^{p}0^{p}$, where $q > p$. Thus, it holds that $s' \notin L$. \\
+      \newline
+      This contradicts the Pumping lemma; thus, the claim holds.
+    \end{proof}
+  \item \textbf{$L = \{w \mid w \text{is not a palindrome}\}$}
+    \begin{proof}
+      It suffices to show that $L^{\complement}$ is not regular. Suppose for contradiction that $L^{\complement}$ is regular, and let $p$ be the Pumping length of $L^{\complement}$. \\
+      \newline
+      Take $s = aa^{R} \in L^{\complement}$ where $\abs{a} \geq p$ and $a^{R}$ is the reversal of $a$. We know that $s = xyz$ as per the Pumping lemma. Since $\abs{xy} \leq p$, we know that $xy$ is some prefix of $a$. So, $s' = xy^{2}z \notin L^{\complement}$. \\
+      \newline
+      This is a contradiction of the Pumping lemma. Thus, the claim holds.
+    \end{proof}
+  \item \textbf{$L = \{wtw \mid w, t \in \{0, 1\}^{+}\}$}
+    \begin{proof}
+      Suppose for contradiction that $L$ is regular, and let $p$ be the Pumping length of $L$. Fix $w = 0^{p}1^{p}$, and let $s = wtw \in L$ with $t \in L$ arbitrary. \\
+      \newline
+      We know that $s = xyz$ with $\abs{xy} \leq p$, as per the Pumping lemma, so $xy$ consists entirely of 0s. Thus, $s' = xy^{2}z$ has an unbalanced number of 0s; consequently, $s' \notin L$. \\
+      \newline
+      This contradicts the Pumping lemma; thus, the claim holds.
+    \end{proof}
+\end{enumerate}
+
+\section*{Problem 1.49: Prove the following.}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{The language $B$ as given is regular.}
+  \begin{proof}
+    Let $k$ in the context of $B$ be arbitrary. We know there exists a regular language $L_{1}$ of strings of the form $1^{k}$, and that there exists a regular language $L{2}$ of strings $y$ s.t. $y$ contains at least $k$ instances of the symbol \"1\". Observe that $B$ is the concatenation of $L_{1}$ and $L_{2}$, which implies that $B$ is regular since regular languages are closed under concatenation.
+  \end{proof}
+\item \textbf{The language $C$ as given is not regular.}
+  \begin{proof}
+    Suppose for contradiction that $C$ is regular. Let $p$ be the Pumping length of $C$. \\
+    \newline
+    Let $s = 1^{p}y \in C$, and suppose that $y$ has $k \leq p$ instances of the symbol 1. We know that $s = xyz$ with $\abs{xy} \leq p$, as per the Pumping lemma, so $y$ consists of all 1s. \\
+    \newline
+    Now, consider $s' = xy^{n}z$ for $n > p$. It must be the case that $s' \notin C$. This contradicts the Pumping lemma; thus, the claim holds.
+  \end{proof}
+\end{enumerate}
 \end{document}
