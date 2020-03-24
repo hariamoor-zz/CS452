@@ -1,4 +1,4 @@
-#+TITLE: Formal Languages and Automata (CS452) - Homework Assignment #6
+ #+TITLE: Formal Languages and Automata (CS452) - Homework Assignment #6
 #+AUTHOR: Hari Amoor, NetID: hra25
 #+DATE: March 26, 2020
 #+EMAIL: amoor.hari@rutgers.edu
@@ -7,30 +7,87 @@
 
 * Problem 4.20, Claim: The problem of determining whether a DFA and a regular expression are equivalent is decidable.
 
-\begin{proof}
-  Let $M$ be a DFA and $R$ be a regular expression. Define the language $C = \{\langle M, R \rangle \mid M \text{ is a DFA and } R \text{ a regular expression with} L(M) = L(R)\}$.
-  \newline
-  Sipser defines a Turing machine $F$ that decides $C$. Thus, the claim holds.
-\end{proof}
+  \begin{proof}
+    Let $M$ be a DFA and $R$ be a regular expression. Define the language $C = \{\langle M, R \rangle \mid M \text{ is a DFA and } R \text{ a regular expression with} L(M) = L(R)\}$.
+    \newline
+    Sipser defines a Turing machine $F$ that decides $C$. Thus, the claim holds.
+  \end{proof}
+
+  #+TITLE: Formal Languages and Automata (CS452) - Homework Assignment #6
+  #+AUTHOR: Hari Amoor, NetID: hra25
+  #+DATE: March 26, 2020
+  #+EMAIL: amoor.hari@rutgers.edu
+  #+OPTIONS: num:nil toc:nil
+  #+LATEX_HEADER_EXTRA: \usepackage{amsmath, amsthm, enumitem}
+
+* Problem 4.20, Claim: The problem of determining whether a DFA and a regular expression are equivalent is decidable.
+  
+  \begin{proof}
+    Let $M$ be a DFA and $R$ be a regular expression. Define the language $C = \{\langle M, R \rangle \mid M \text{ is a DFA and } R \text{ a regular expression with} L(M) = L(R)\}$.
+    \newline
+    Sipser defines a Turing machine $F$ that decides $C$. Thus, the claim holds.
+  \end{proof}
 
 * Problem 4.26: Answer the following for the given functions.
-\begin{enumerate}[label=(\alph*)]
-\item \textbf{Is $f$ one-to-one?} \\
-  \newline
-  No, each of 6 and 7 in $Y$ are mapped to multiple values in $X$.
-\item \textbf{Is $f$ onto?} \\
-  \newline
-  No, each of 8, 9, and 10 in $Y$ are not mapped to any input in $X$.
-\item \textbf{Is $f$ a correspondence?} \\
-  \newline
-  Yes; each input maps to a single output, thus it is well-defined.
-\item \textbf{Is $g$ one-to-one?} \\
-  \newline
-  Yes; $g$ satisfies $g(a) = g(b)$ iff $a = b$, for all $a, b \in X$.
-\item \textbf{Is $g$ onto?} \\
-  \newline
-  Yes; each $y \in Y$ has $x \in X$ s.t. $g(x) = y$.
-\item \textbf{Is $g$ a correspondence?} \\
-  \newline
-  Yes; since $g$ is a bijection, it must be well-defined.
-\end{enumerate}
+  \begin{enumerate}[label=(\alph*)]
+  \item \textbf{Is $f$ one-to-one?} \\
+    \newline
+    No, each of 6 and 7 in $Y$ are mapped to multiple values in $X$.
+  \item \textbf{Is $f$ onto?} \\
+    \newline
+    No, each of 8, 9, and 10 in $Y$ are not mapped to any input in $X$.
+  \item \textbf{Is $f$ a correspondence?} \\
+    \newline
+    Yes; each input maps to a single output, thus it is well-defined.
+  \item \textbf{Is $g$ one-to-one?} \\
+    \newline
+    Yes; $g$ satisfies $g(a) = g(b)$ iff $a = b$, for all $a, b \in X$.
+  \item \textbf{Is $g$ onto?} \\
+    \newline
+    Yes; each $y \in Y$ has $x \in X$ s.t. $g(x) = y$.
+  \item \textbf{Is $g$ a correspondence?} \\
+    \newline
+    Yes; since $g$ is a bijection, it must be well-defined.
+  \end{enumerate}
+* Problem 5.21, Claim: The language of ambiguous CFGs is undecidable.
+  \begin{proof}
+    Let $L = \text{AMBIG}_{\text{CFG}}$ for brevity, and define finite sequences $(a_{N}), (b_{N})$ of words in $L$. We define the following CFG $G$:
+    \begin{align*}
+      S \rightarrow A \mid B \\
+      A \rightarrow a_{1}A\sigma_{1} \mid a_{2}A\sigma_{2} \mid \cdots \mid a_{n}A\sigma_{n} \mid a_{1}\sigma_{1} \mid \cdots \mid a_{n}\sigma_{n}\\
+      B \rightarrow b_{1}B\sigma_{1} \mid b_{2}B\sigma_{2} \mid \cdots \mid b_{n}B\sigma_{n} \mid b_{1}\sigma{1} \mid \cdots \mid b_{n}\sigma_{n}
+    \end{align*}
+    The $\sigma_{i}$ are new characters to the alphabet, i.e. $\sigma_{i} = i$. \\
+    \newline
+    Similarly, if there is no ambiguity, then the PCP cannot be solved for $w$.
+    \newline
+    Now, we carry out the reduction from PCP to show that $L$ is undecidable, as required.
+  \end{proof}
+* Problem 5.24, Claim: Neither the given language nor its complement are Turing-recognizable.
+  \begin{proof}
+    Let $A$ be the language defined. Trivially, $M$ is not recognizable. We reduce $A$ to $J$ with the reduction function $f$ defined by $w \mapsto 1w$. In particular, $w \in A$ iff $f(w) \in J$; obviously, $f$ is compputable, so the reduction holds. This suffices to show that $J$ is not recognizable. \ \\
+    \newline
+    Similarly, we reduce $A_{\text{TM}}^{\complement}$ to $J^{\complement}$ with the reduction function induced by $w \mapsto 0w$. Again, since this reduction holds, $J^{\complement}$ cannot be recognizable.
+  \end{proof}
+
+* Problem 5.25: Provide an example of an undecidable language that can be reduced to its complement.
+
+  Let $L$ be recursively enumerable and undecidable. The language $0L \cup 1L^{\complement}$ is not recursively enumerable, thus it is not decidable.
+* Problem 5.30(c): Prove the undecidability of the given language.
+
+  \begin{proof}
+    With Rice's Theorem, it suffices to show that $L$ is nontrivial and that $L(M_{1}) = L(M_{2})$ implies that $M_{1} \in P$ iff $M_{2} \in P$. \ \\
+    \newline
+    We can easily show that $L = \text{ALL}_{\text{TM}}$ is nontrivial, i.e. $L$ and its complement both contain well-defined Turing machines. Now, suppose $M_{1}$ and $M_{2}$ are Turing machines. If $L(M_{1}) = L(M_{2})$, then either $L(M_{1}) = L(M_{2}) = \sum^{\star}$ or $L(M_{1}) = L(M_{2}) \neq \sum^{\star}$. Equivalently, $M_{1} \in L$ iff $M_{2} \in L$, as required.
+  \end{proof}
+* Problem 6.13, Claim: For each ring defined by $\mathbb{Z}_{n}$, the theory $\text{Th}(\mathbb{Z}_{n})$ is decidable.
+
+  \begin{proof}
+    Let $\phi = Q_{1} x_{1} Q_{2} x_{2} \ldots Q_{n} x_{n} \psi(x_{1}, \ldots, x_{n})$ be a formula, where the $Q_{i}$ are quantifiers and $\psi$ has no quantifiers. We define operators $I_{k}(x_{1}, \ldots, x_{k})$ as follows: \\
+    \newline
+    If $k = n$, then $I_{k} = \psi$. Otherwise, if $Q_{k} = \exists$, then put $I_{k-1}(x_{1}, \ldots, x_{k-1}) = \lor_{i=0}^{n-1} I_{k}(x_{1}, \ldots, x_{k-1}, i)$. Finally, if $Q_{k} = \forall$, put $I_{k-1}(x_{1}, \ldots, x_{k-1}}) = \land_{i=0}^{n-1} I_{k}(x_{1}, \ldots, x_{k-1}, i)$. \\
+    \newline
+    By this definition, $I_{0}$ will have no inputs, and simply return a Boolean value; return $I_{0}$. To demonstrate that this machine is well-defined, see by induction that $\phi \iff Q_{1} Q_{2} \ldots Q_{k} I_{k}$. \\
+    \newline
+    Thus, the theories of rings of the integers modulo $n$ are decidable.	
+  \end{proof}
