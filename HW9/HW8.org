@@ -1,0 +1,64 @@
+#+AUTHOR: Hari Amoor, NetID: hra25
+#+DATE: April 16, 2020
+#+EMAIL: amoor.hari@rutgers.edu
+#+OPTIONS: num:nil toc:nil
+#+LATEX_CMD: xelatex
+#+LATEX_HEADER_EXTRA: \usepackage{amsmath, amssymb, amsthm, commath, enumitem, quoting}
+
+* Problem 9.7: Supply regular expressions that generate the following languages.
+    * We supply $(0^{\star}10^{\star})^{500}$.
+    * We supply $\cup_{i=1}^{500} (0^{\star}10^{\star})^{i}$.
+    * We supply $\cup_{i=1}^{500} (0^{\star}10^{\star})^{i}(0^{\star}10^{\star})^{\star}$.
+* Problem 9.9, Claim: If $\text{NP} = \text{P}^{\text{SAT}}$, then $\text{NP} = \text{co-NP}$.
+
+\begin{proof}
+  Suppose that $NP = P^{SAT}$. Now, let $L$ be a language in $coNP$; then, its complement must be in $NP$. There must exist an oracle machine $M$ that applies $M^{SAT}$ to solve $L$; the machine that accepts input iff $M$ rejects it is sufficient to show that $L^{\complement} \in P^{SAT} = NP$. Thus, $L$ must be an element of $coNP$. \\
+  \newline
+  It can be similarly shown that $NP \supseteq coNP$. Thus, the claim holds.
+\end{proof}
+
+* Problem 9.12: Describe the problems with the given erroneous proof.
+
+The proof claims that it follows from the Cook-Levin Theorem that $NP \subseteq TIME(n^{k})$, where $SAT$ is decided with time-complexity $\mathcal{O}(n^{k})$.
+
+However, the Cook-Levin Theorem only guarantees a /polynomial-time/ reduction from $L \in NP$ to $SAT$; thus, it does not follow from this that ${NP} \subseteq TIME(n^{k})$, as the author claims.
+
+* Problem 9.13, Claim: If $A \in \text{TIME}(n^{6})$, then $\text{pad}(A, n^{2}) \in \text{TIME}(n^{3})$.
+
+\begin{proof}
+  Let $M$ be a machine that decides $A$ with time-complexity $\mathcal{O}(n^{6})$. We define the machine $M'$ that decides the specified padding of $L$ as follows: \\
+  \newline
+  On input $x$, check if $x$ is of the format $pad(w, \abs{w}^{2})$. If so, simulate $M$ on $w$; otherwise, reject. \\
+  \newline
+  This decides $pad(A, n^{2})$ with time-complexity $\mathcal{O}(n^{6})$ as required.
+\end{proof}
+
+* Problem 9.14, Claim: If $\text{EXPTIME} \neq \text{NEXPTIME}$, then $\text{P} \neq \text{NP}$. 
+
+\begin{proof}
+  Suppose for contraposition that $\text{P} = \text{NP}$. Consider $L \in \text{NEXPTIME}$, and let $c$ be a positive integer s.t. $L \in \text{NTIME}(2^{n^{c}})$. Clearly, $\text{pad}(A, 2^{n}) \in \text{NP}$, so by assumption, it is also in $\text{P}$. Therefore, $L \in \text{TIME}(2^{\text{O}(n^{c}))} \subseteq \text{EXPTIME}$. \\
+  \newline
+  Consequently, $\text{EXPTIME} = \text{NEXPTIME}$, as required.
+\end{proof}
+
+* Supplementary Problem 1, Claim: If $A$ is complete for $EXPTIME$ under $\leq_{m}^{p}$ restrictions, then there exists $\epsilon > 0$ s.t. $A \notin \text{DTIME}(2^{n^{\epsilon}})$.
+
+This cannot be shown, because $EXPTIME$ can be written as $\cup_{k \in \mathbb{N}} DTIME(2^{n^{k}})$. If $A$ is complete for $EXPTIME$ under polynomial-time m-reductions, then it must be in $DTIME(2^{n^{\epsilon}})$ for all $\epsilon$. Thus, the converse is true.
+
+* Supplementary Problem 2, Claim: IF $B$ is complete for $PSPACE$ under logarithmic-time m-reductions then there exists $\epsilon > 0$ s.t. $A \notin \text{DSPACE}(2^{n^{\epsilon}})$.
+
+Similarly with Problelm 1, this is not true; the opposite can be proven.
+
+* Supplementary Problem 3, Claim: The language $A$, as defined, is complete in $NP$ under logarithmic-time m-reductions.
+
+\begin{proof}
+  First, we provide a reduction $f$ from $A$ to the Hamiltonian path problem as follows: \\
+  \newline
+  On input $(x, y)$, accept iff $M^{PATH}$ accepts $x$ and rejects $y$. \\
+  \newline
+  Similarly, we provide a reudction $g$ from the Hamiltonian path problem to $A$: \\
+  \newline
+  On input $x$, accept $x$ iff $M^{A}$ accepts $(x, y)$, where $y$ is the complement of $x$. \\
+  \newline
+  Both reductions are in logarithmic-time, as required. Thus, $A$ is Turing-equivalent to $PATH$. Since $PATH$ is $NP$-complete, then so too must be $A$, as required.
+\end{proof}
